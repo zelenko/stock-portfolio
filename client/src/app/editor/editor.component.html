@@ -1,0 +1,95 @@
+<div fxLayout="column" fxLayoutAlign="space-between right" flex="50" class="red" class="container">
+
+  <table mat-table [dataSource]="list" class="mat-elevation-z8" width="100%">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element" (click)="edit(element.id)" align="left"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Open Column -->
+    <ng-container matColumnDef="open">
+      <th mat-header-cell *matHeaderCellDef> Open </th>
+      <td mat-cell *matCellDef="let element" align="left"> {{element.open}} </td>
+    </ng-container>
+
+    <!-- High Column -->
+    <ng-container matColumnDef="high">
+      <th mat-header-cell *matHeaderCellDef> High </th>
+      <td mat-cell *matCellDef="let element" align="left"> {{element.high}} </td>
+    </ng-container>
+
+    <!-- Low Column -->
+    <ng-container matColumnDef="low">
+      <th mat-header-cell *matHeaderCellDef> Low </th>
+      <td mat-cell *matCellDef="let element" align="left"> {{element.low}} </td>
+    </ng-container>
+
+    <!-- Close Column -->
+    <ng-container matColumnDef="close">
+      <th mat-header-cell *matHeaderCellDef> Close </th>
+      <td mat-cell *matCellDef="let element" [class.red]="element.close < element.price" align="left">
+        {{element.close}} </td>
+    </ng-container>
+
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element" align="right"> <button (click)="delete(element.id)">[X]</button><button
+          (click)="edit(element.id)">Edit</button>
+        <button (click)="buy(element.name,element.close)">Buy</button></td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-divider></mat-divider>
+
+</div>
+
+<!-- Form -->
+<div fxLayout="column" fxLayoutAlign="space-between right" flex="50" class="red" class="container">
+  <div>
+    <mat-form-field hintLabel="Max 15 characters">
+      <input [(ngModel)]="one.name" matInput #input maxlength="15" placeholder="Enter Symbol Name">
+      <mat-hint align="end">{{input.value?.length || 0}}/15</mat-hint>
+    </mat-form-field>
+
+  </div>
+  <div>
+    <mat-form-field>
+      <input [(ngModel)]="one.open" matInput placeholder="Open" type="number" class="example-right-align">
+      <span matPrefix>$&nbsp;</span>
+      <!-- <span matSuffix>.00</span> -->
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input [(ngModel)]="one.high" matInput placeholder="High" type="number" class="example-right-align">
+      <span matPrefix>$&nbsp;</span>
+      <!-- <span matSuffix>.00</span> -->
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input [(ngModel)]="one.low" matInput placeholder="Low" type="number" class="example-right-align">
+      <span matPrefix>$&nbsp;</span>
+      <!-- <span matSuffix>.00</span> -->
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input [(ngModel)]="one.close" matInput placeholder="Close" type="number" class="example-right-align">
+      <span matPrefix>$&nbsp;</span>
+      <!-- <span matSuffix>.00</span> -->
+    </mat-form-field>
+  </div>
+  <div *ngIf="one.id; else elseBlock">
+    <button mat-raised-button color="primary" (click)="saveSymbol()">Save Symbol</button>
+  </div>
+  <ng-template #elseBlock><button mat-raised-button color="primary" (click)="create()">Create New Symbol</button></ng-template>
+
+</div>

@@ -49,6 +49,13 @@ class Symbols {
     return this.dao.all(`SELECT * FROM symbols`)
   }
 
+  getAllwithPrice(){
+    return this.dao.all(`SELECT symbols.*,
+    price
+FROM symbols
+LEFT JOIN portfolio ON symbols.name = portfolio.name`)
+  }
+
 }
 
 module.exports = Symbols

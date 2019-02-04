@@ -39,7 +39,8 @@ server.route({
     handler: async () => {
         var output
         try {
-            output = await symboList.getAll()
+            //output = await symboList.getAll()
+            output = await symboList.getAllwithPrice()
         } catch (err) { console.log("error is:", err) }
         return output
     }
@@ -119,7 +120,8 @@ server.route({
         var output
         try {
             //output = await pf.createTable()
-            output = await pf.getAll()
+            //output = await pf.getAll()
+            output = await pf.getAllwithClosePrice()
         } catch (err) { console.log("error is:", err) }
         return output
     }

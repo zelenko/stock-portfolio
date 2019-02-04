@@ -51,6 +51,13 @@ class Portfolio {
     return this.dao.all(`SELECT * FROM portfolio`)
   }
 
+  getAllwithClosePrice(){
+    return this.dao.all(`SELECT portfolio.*,
+    close
+FROM portfolio
+LEFT JOIN symbols on symbols.name = portfolio.name`)
+  }
+
 }
 
 module.exports = Portfolio

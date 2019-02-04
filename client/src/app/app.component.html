@@ -1,0 +1,15 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <mat-divider></mat-divider>
+  <h1>Welcome to {{ title }}</h1>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="center">
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle value="editor" routerLink="/" checked="true">Symbols</mat-button-toggle>
+        <mat-button-toggle value="portfolio" routerLink="/portfolio">Portfolio</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>
